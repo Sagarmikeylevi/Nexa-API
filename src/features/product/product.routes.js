@@ -12,5 +12,6 @@ productRouter.post(
   productController.addProducts
 );
 productRouter.get("/:id", productController.getOneProduct);
+productRouter.get("/filter", productController.filterProduct);
 
 export default productRouter;
