@@ -1,9 +1,9 @@
 import express from "express";
-import ProductRouter from "./src/features/product/product.routes.js";
+import productRouter from "./src/features/product/product.routes.js";
 const server = express();
 const PORT = 3200;
 
-server.use("/api/products", ProductRouter);
+server.use("/api/products", productRouter);
 
 server.get("/", (req, res) => {
   res.send("Welcome to Nexa APIs");
