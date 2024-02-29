@@ -4,3 +4,11 @@ Add a Product
 Get one Product
 Rate Product
 Filter Product
+Add Items to Cart
+Get Items to Cart
+Remove Items from Cart
+
+
+User:
+SignUp - Email, Name, Password, TypeOfUser(customer, seller)
+SignIn - Email, Password
