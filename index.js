@@ -3,12 +3,16 @@ import productRouter from "./src/features/product/product.routes.js";
 import userRouter from "./src/features/user/user.routes.js";
 import bodyParser from "body-parser";
 import basicAuthorizer from "./src/middlewares/basicAuth.middleware.js";
+import { config } from "dotenv";
+import jwtAuth from "./src/middlewares/jwt.middleware.js";
+config();
+
 const server = express();
-const PORT = 3200;
+const PORT = process.env.PORT;
 
 server.use(bodyParser.json());
 
-server.use("/api/products", basicAuthorizer, productRouter);
+server.use("/api/products", jwtAuth, productRouter);
 server.use("/api/users", userRouter);
 
 server.get("/", (req, res) => {

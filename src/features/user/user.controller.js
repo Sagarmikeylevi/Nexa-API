@@ -1,4 +1,7 @@
 import UserModel from "./user.model.js";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
 
 export default class UserController {
   signUp(req, res) {
@@ -12,7 +15,10 @@ export default class UserController {
     if (!user) {
       return res.status(400).send("Incorrect Credentals");
     } else {
-      return res.status(200).send("Login Successful");
+      const token = jwt.sign({ userId: user.id }, process.env.SECRET_KEY, {
+        expiresIn: "1h",
+      });
+      return res.status(200).send(token);
     }
   }
 }
