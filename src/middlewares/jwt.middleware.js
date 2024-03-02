@@ -12,7 +12,7 @@ const jwtAuth = (req, res, next) => {
 
   try {
     const payload = jwt.verify(token, process.env.SECRET_KEY);
-    console.log(payload);
+    req.userId = payload.userId;
     next();
   } catch (error) {
     console.log(error);
