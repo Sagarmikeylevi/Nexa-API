@@ -20,6 +20,10 @@ server.use("/api/products", jwtAuth, productRouter);
 server.use("/api/cart", jwtAuth, cartRouter);
 server.use("/api/users", userRouter);
 
+server.use((req, res) => {
+  res.status(404).send("API not found");
+});
+
 server.get("/", (req, res) => {
   res.send("Welcome to Nexa APIs");
 });
