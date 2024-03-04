@@ -9,9 +9,12 @@ import { config } from "dotenv";
 import jwtAuth from "./src/middlewares/jwt.middleware.js";
 config();
 import apiDocs from "./swagger.json" assert { type: "json" };
+import cors from "cors";
 
 const server = express();
 const PORT = process.env.PORT;
+
+server.use(cors());
 
 server.use(bodyParser.json());
 
