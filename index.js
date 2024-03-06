@@ -10,6 +10,7 @@ import jwtAuth from "./src/middlewares/jwt.middleware.js";
 config();
 import apiDocs from "./swagger.json" assert { type: "json" };
 import cors from "cors";
+import loggerMiddleware from "./src/middlewares/logger.middleware.js";
 
 const server = express();
 const PORT = process.env.PORT;
@@ -19,6 +20,8 @@ server.use(cors());
 server.use(bodyParser.json());
 
 server.use("/api-docs", swagger.serve, swagger.setup(apiDocs));
+
+server.use(loggerMiddleware);
 server.use("/api/products", jwtAuth, productRouter);
 server.use("/api/cart", jwtAuth, cartRouter);
 server.use("/api/users", userRouter);
