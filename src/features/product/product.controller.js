@@ -38,12 +38,11 @@ export default class ProductController {
 
     console.log(userId + " " + productId + " " + rating);
 
-    const error = ProductModel.rateProduct(userId, productId, rating);
-
-    if (error) {
-      return res.status(400).send(error);
-    } else {
-      return res.status(200).send("Rating has been added");
+    try {
+      ProductModel.rateProduct(userId, productId, rating);
+    } catch (error) {
+      return res.status(400).send(error.message);
     }
+    return res.status(200).send("Rating has been added");
   }
 }

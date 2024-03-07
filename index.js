@@ -11,6 +11,7 @@ config();
 import apiDocs from "./swagger.json" assert { type: "json" };
 import cors from "cors";
 import loggerMiddleware from "./src/middlewares/logger.middleware.js";
+import connectToMongoDB from "./src/config/mongodb.js";
 
 const server = express();
 const PORT = process.env.PORT;
@@ -26,6 +27,11 @@ server.use("/api/products", jwtAuth, productRouter);
 server.use("/api/cart", jwtAuth, cartRouter);
 server.use("/api/users", userRouter);
 
+server.use((err, req, res, next) => {
+  console.log(err);
+  res.status(503).send("Something went wrong, please try again later");
+});
+
 server.use((req, res) => {
   res.status(404).send("API not found");
 });
@@ -37,5 +43,6 @@ server.get("/", (req, res) => {
 server.listen(PORT, (err) => {
   if (err) return console.log("ERROR ----->", err);
 
-  return console.log(`Server running on PORT: ${PORT}`);
+  console.log(`Server running on PORT: ${PORT}`);
+  connectToMongoDB();
 });
