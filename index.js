@@ -2,7 +2,7 @@ import express from "express";
 import swagger from "swagger-ui-express";
 import productRouter from "./src/features/product/product.routes.js";
 import userRouter from "./src/features/user/user.routes.js";
-import cartRouter from "./src/features/cart/cart.routes.js";
+import cartRouter from "./src/features/cartitems/cartitems.routes.js";
 import bodyParser from "body-parser";
 // import basicAuthorizer from "./src/middlewares/basicAuth.middleware.js";
 import { config } from "dotenv";
